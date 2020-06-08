@@ -38,12 +38,13 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码解决多�
 │  ├─通讯录（开发中）
 │  ├─系统消息（开发中）
 ├─。。。
+```
 
 
 技术文档
 -----------------------------------
 
-- 开发文档：  [http://doc.jeecg.com/1751706](http://doc.jeecg.com/1751706)
+- 开发环境搭建：  [http://doc.jeecg.com/1751706](http://doc.jeecg.com/1751706)
 
 - 技术官网：  [http://www.jeecg.com](http://www.jeecg.com)
 
