@@ -22,9 +22,9 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码解决多�
 
 <h3 align="center">JEECG BOOT UNIAPP</h3>
 
-采用Uniapp框架实现了与JeecgBoot平台完美对接的移动解决方案！采用前后端分离架构：Uniapp，ColorUI，Vue。
+实现了与JeecgBoot平台完美对接的移动解决方案！采用技术架构：Uniapp，ColorUI，Vue。
 
-项目目的: 为企业提供一套APP开发框架，轻松与Jeecg Boot对接，一份代码解决多终端适配（APP、小程序、H5），目前框架已经实现登录机制、用户信息维护等功能。
+项目目标: 为企业提供一套成熟的APP开发框架，轻松与Jeecg Boot对接，一份代码解决多终端适配（APP、小程序、H5），目前框架已经实现登录机制、用户信息设置、移动首页、菜单等基础功能。
 
 
 ### 功能模块
