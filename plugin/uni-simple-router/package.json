@@ -1,0 +1,33 @@
+{
+    "name": "uni-simple-router",
+    "version": "1.5.5",
+    "description": "> 一个更为简洁的[Vue-router](https://router.vuejs.org/zh/)，专为 [uni-app](https://uniapp.dcloud.io/) 量身打造",
+    "main": "index.js",
+    "directories": {
+      "example": "examples"
+    },
+    "scripts": {
+      "postinstall": "node -e \"console.log('\\x1B[32m \\x1B[1m','\\n 欢迎下载 uni-simple-router ↓↓↓↓ \\n\\n  注意事项：\\n   1: 编译为app端如果开启V3，请关闭fast启动模式 \\n   2: 多看文档，特别是‘快速上手’栏目。文档地址：http://hhyang.cn/ \\n   3: 不要再问路由表是否可以不配置两遍。问就是文档有！\\n   4: 有啥问题解决不了的加群：769241495 \\n   5: 任何时候你都可以在github上提出你的想法及问题，相信我很快会得到回应 \\n\\n  showTime：\\n   1:开源不易，需要鼓励。去给 uni-simple-router 项目 点个 star 吧 \\n')\""
+    },
+    "dependencies": {
+      "query-string": "^6.12.1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/SilurianYang/uni-simple-router.git"
+    },
+    "keywords": [
+      "router",
+      "uni-app-router",
+      "interceptor",
+      "uni-app",
+      "uniapp"
+    ],
+    "author": "hhyang",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/SilurianYang/uni-simple-router/issues"
+    },
+    "homepage": "https://github.com/SilurianYang/uni-simple-router#readme",
+    "types": "./types/index.d.ts"
+  }

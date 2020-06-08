@@ -1,0 +1,1 @@
+插件市场安装的用户  你需要在你项目目录下执行  `npm init -y && npm install query-string -D`
