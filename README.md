@@ -3,7 +3,7 @@
 
 
 
-# jeecg-boot-uniapp（APP开发框架）
+# Jeecg-Boot-Uniapp（APP开发框架）
 JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码解决多终端适配（APP、小程序、H5）。
 
 当前最新版本： 1.0.0-beta（发布日期：2020-06-08）
