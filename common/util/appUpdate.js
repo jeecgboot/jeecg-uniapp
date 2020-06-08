@@ -2,7 +2,7 @@
 
 export default function appUpdate() {
 	uni.request({
-		url: 'http://app.myhjdc.cn/update.json', //检查更新的服务器地址
+		url: 'http://app.jeecg.com/update.json', //检查更新的服务器地址
 		data: {
 			appid: plus.runtime.appid,
 			version: plus.runtime.version,
