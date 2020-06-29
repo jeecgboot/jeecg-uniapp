@@ -73,5 +73,5 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码解决多�
 效果预览
 ----
 
-![输入图片说明](https://wx3.sinaimg.cn/mw690/7087dfcbgy1gfkusr16nbg20af0ijngm.gif "在这里输入图片标题")
+![输入图片说明](https://oscimg.oschina.net/oscnet/up-49e27699eb278c7c6b6748bfeaeb6c13b72.gif "在这里输入图片标题")
 
