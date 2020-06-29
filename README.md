@@ -53,6 +53,8 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码解决多�
 技术文档
 -----------------------------------
 
+- 入门视频教程： https://www.bilibili.com/video/BV1JZ4y1W7yC?p=5
+
 - 开发环境搭建：  [http://doc.jeecg.com/1751706](http://doc.jeecg.com/1751706)
 
 - 技术官网：  [http://www.jeecg.com](http://www.jeecg.com)
