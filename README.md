@@ -23,7 +23,7 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 - https://gitee.com/jeecg/jeecg-uniapp
 
 ### 技术文档
-- 技术官网： [http://www.jeecg.com/appIndex]("http://www.jeecg.com/appIndex")
+- 技术官网： [http://www.jeecg.com/appIndex](http://www.jeecg.com/appIndex)
 - 技术文档： [http://doc.jeecg.com/2044258](http://doc.jeecg.com/2044258)
 - QQ交流群 ： ④774126647、③816531124（满）、②769925425（满）、①284271917（满）
 - 视频教程： [零基础入门视频](https://www.bilibili.com/video/BV1sQ4y1R7Rz)
