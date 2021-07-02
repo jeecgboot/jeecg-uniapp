@@ -1,28 +1,58 @@
- <template>
-    <view class="zai-box">
+  <template>
+	<view class="zai-box">
         <scroll-view scroll-y class="page">
-            <view style="text-align: center;" :style="[{animation: 'show ' + 0.4+ 's 1'}]">
-				<image src="/static/login3.png" mode='aspectFit' class="zai-logo"></image>
-				<view class="zai-title">JEECG BOOT</view>
+            <view class="text-center" :style="[{animation: 'show ' + 0.4+ 's 1'}]">
+				<image src="https://static.jeecg.com/upload/test/login4_1595818039175.png" mode='aspectFit' class="zai-logo "></image>
+				<view class="zai-title text-shadow ">JEECG BOOT </view>
 			</view>
             <view class="box padding-lr-xl login-paddingtop" :style="[{animation: 'show ' + 0.6+ 's 1'}]">
-
-                <view class="cu-form-group margin-top round shadow-blur">
-                    <view class="title">账号:</view>
-                    <input placeholder="请输入账号" name="input" v-model="userName"></input>
-                </view>
-                <view class="cu-form-group margin-top round">
-                    <view class="title">密码:</view>
-                    <input placeholder="请输入密码" name="input" type="password" v-model="password"></input>
-                </view>
-                <view class="padding  flex  flex-direction">
-                    <button class="cu-btn bg-green shadow-blur round lg" :loading="loading"
-                            @tap="onLogin"> {{loading ? "登录中...":"登 录"}}
-                    </button>
-                </view>
+				<block v-if="loginWay==1">
+					<view class="cu-form-group margin-top  shadow-warp" :class="[shape=='round'?'round':'']">
+						<view class="title"><text class="cuIcon-people margin-right-xs"></text>账号:</view>
+						<input placeholder="请输入账号" name="input" v-model="userName"></input>
+					</view>
+					<view class="cu-form-group margin-top shadow-warp" :class="[shape=='round'?'round':'']">
+						<view class="title"><text class="cuIcon-lock margin-right-xs"></text>密码:</view>
+						<input class="uni-input" placeholder="请输入密码" :password="!showPassword" v-model="password" />
+						<view class="action text-lg">
+						    <text :class="[showPassword ? 'cuIcon-attention' : 'cuIcon-attentionforbid']" @click="changePassword"></text>
+						</view>
+					</view>
+					<view class="padding text-center margin-top">
+						<button class="cu-btn bg-blue lg margin-right shadow" :loading="loading" :class="[shape=='round'?'round':'']"
+							@tap="onLogin"><text space="emsp">{{loading ? "登录中...":" 登录 "}}</text>
+						</button>
+						<button class="cu-btn line-blue lg margin-left shadow" :loading="loading" :class="[shape=='round'?'round':'']"
+							@tap="loginWay=3-loginWay">短信登录
+						</button>
+					</view>
+				</block>
+                <block v-else>
+                	<view class="cu-form-group margin-top  shadow-warp" :class="[shape=='round'?'round':'']">
+                		<view class="title"><text class="cuIcon-mobile margin-right-xs"></text>手机号:</view>
+                		<input placeholder="请输入手机号" type="number" maxlength="11" v-model="phoneNo"></input>
+                	</view>
+                	<view class="cu-form-group margin-top shadow-warp" :class="[shape=='round'?'round':'']">
+                		<view class="title"><text class="cuIcon-lock margin-right-xs"></text>验证码:</view>
+                		<input class="uni-input" placeholder="请输入验证码" v-model="smsCode"/>
+                		<view class="action">
+                			<button class="cu-btn line-blue sm" :disabled="!isSendSMSEnable" @click="onSMSSend"> {{ getSendBtnText }}</button>
+                		</view>
+                	</view>
+                	<view class="padding text-center margin-top">
+                		<button class="cu-btn bg-blue lg margin-right shadow" :loading="loading" :class="[shape=='round'?'round':'']"
+                			@tap="onSMSLogin"><text space="emsp">{{loading ? "登录中...":" 登录 "}}</text>
+                		</button>
+                		<button class="cu-btn line-blue lg margin-left shadow" :loading="loading" :class="[shape=='round'?'round':'']"
+                			@tap="loginWay=1">账户登录
+                		</button>
+                	</view>
+                </block>
+				
+	
 				<!-- #ifdef APP-PLUS -->
-				<view class="padding flex flex-direction  text-center  ">
-						当前版本:{{version}}
+				<view class="padding flex flex-direction  text-center">
+					当前版本:{{version}}
 				</view>
 				<!-- #endif -->
 				
@@ -31,12 +61,9 @@
 		<!-- 登录加载弹窗 -->
 		<view class="cu-load load-modal" v-if="loading">
 			<!-- <view class="cuIcon-emojifill text-orange"></view> -->
-			<image src="/static/login3.png" mode="aspectFit"></image>
+			<image src="https://static.jeecg.com/upload/test/login4_1595818039175.png" mode="aspectFit" class="round"></image>
 			<view class="gray-text">登录中...</view>
 		</view>
-		<!-- <my-image-upload></my-image-upload>
-		<my-select></my-select> -->
-		<!-- <my-page></my-page> -->
     </view>
 
 </template>
@@ -44,20 +71,15 @@
 <script>
 	import { ACCESS_TOKEN,USER_NAME,USER_INFO } from "@/common/util/constants"
 	import { mapActions } from "vuex"
-	import myImageUpload from "@/components/my-componets/my-image-upload.vue"
-	import mypage from "@/components/my-componets/my-page.vue"
-	import myselect from "@/components/my-componets/my-select.vue"
+    import configService from '@/common/service/config.service.js';
 	
     export default {
-		components:{
-			'my-image-upload':myImageUpload,
-			'my-select':myselect
-		},
         data() {
             return {
+				shape:'',//round 圆形
 				loading: false,
-				userName: '',
-				password: '',
+				userName: 'jeecg',
+				password: '123456',
 				phoneNo: '',
 				smsCode: '',
 				showPassword: false, //是否显示明文
@@ -65,20 +87,46 @@
 				smsCountDown: 0,
 				smsCountInterval: null,
 				toggleDelay: false,
-				version:''
+				version:'',
+				//第三方登录相关信息
+				thirdType:"",
+				thirdLoginInfo:"",
+				thirdLoginState:false,
+				bindingPhoneModal:false,
+				thirdUserUuid:'',
+				url: {
+					bindingThirdPhone: '/sys/thirdLogin/bindingThirdPhone'
+				}
             };
         },
 		onLoad:function(){
 			// #ifdef APP-PLUS
 			var that=this
 			plus.runtime.getProperty( plus.runtime.appid, function ( wgtinfo ) {
-					that.version=wgtinfo.version
-				} );
+				that.version=wgtinfo.version
+			});
 			// #endif
 		},
+		computed: {
+		      isSendSMSEnable() {
+		        return this.smsCountDown <= 0 && this.phoneNo.length > 4;
+		      },
+		      getSendBtnText() {
+		        if (this.smsCountDown > 0) {
+		          return this.smsCountDown + '秒后发送';
+		        } else {
+		          return '发送验证码';
+		        }
+		      },
+		      canSMSLogin() {
+		        return this.userName.length > 4 && this.smsCode.length > 4;
+		      },
+		      canPwdLogin() {
+		        return this.userName.length > 4 && this.password.length > 4;
+		      },
+		},
         methods: {
-			 ...mapActions([ "mLogin","PhoneLogin" ]),
-			
+			 ...mapActions([ "mLogin","PhoneLogin","ThirdLogin" ]),
 			onLogin: function (){
 			        if(!this.userName || this.userName.length==0){
 			          this.$tip.toast('请填写用户名');
@@ -94,42 +142,131 @@
 			        }
 					this.loading=true;
 			        this.mLogin(loginParams).then((res) => {
-					  console.log("mLogin",res)
 					  this.loading=false;
 			          if(res.data.success){
+						 // #ifdef APP-PLUS
+						  this.saveClientId()
+						 // #endif
+						 // #ifndef APP-PLUS
 						  this.$tip.success('登录成功!')
 						  this.$Router.replaceAll({name:'index'})
-						 /* uni.reLaunch({
-							url: '/pages/index/index'
-						  }); */
-			          }else{
+						 // #endif
+						}else{
 			              this.$tip.alert(res.data.message);
-			          }
+			            }
 			        }).catch((err) => {
 			          let msg = err.data.message || "请求出现错误，请稍后再试"
-			          this.$tip.alert(msg);
+			          this.loading=false;
+					  this.$tip.alert(msg);
 			        }).finally(()=>{
 					  this.loading=false;
-					})
-			      }
-        }
+				})
+			},
+			saveClientId(){
+				var info = plus.push.getClientInfo();
+				var cid = info.clientid;
+				this.$http.get("/sys/user/saveClientId",{params:{clientId:cid}}).then(res=>{
+					console.log("res::saveClientId>",res)
+					this.$tip.success('登录成功!')
+					this.$Router.replaceAll({name:'index'})
+				})
+			},
+			changePassword() {
+				this.showPassword = !this.showPassword;
+			},
+			onSMSSend() {
+				let smsParams = {};
+				smsParams.mobile=this.phoneNo;
+				smsParams.smsmode="0";
+				let checkPhone = new RegExp(/^[1]([3-9])[0-9]{9}$/);
+                if(!smsParams.mobile || smsParams.mobile.length==0){
+					this.$tip.toast('请输入手机号');
+					return false
+				}
+				if(!checkPhone.test(smsParams.mobile)){
+					this.$tip.toast('请输入正确的手机号');
+					return false
+				}
+				this.$http.post("/sys/sms",smsParams).then(res=>{
+				  if(res.data.success){
+					this.smsCountDown = 60;
+					this.startSMSTimer();
+				  }else{
+					this.smsCountDown = 0;
+					this.$tip.toast(res.data.message);
+				  }
+				});
+			  },
+			startSMSTimer() {
+				this.smsCountInterval = setInterval(() => {
+				  this.smsCountDown--;
+				  if (this.smsCountDown <= 0) {
+					clearInterval(this.smsCountInterval);
+				  }
+				}, 1000);
+			},
+			onSMSLogin() {
+				let checkPhone = new RegExp(/^[1]([3-9])[0-9]{9}$/);
+				
+				if(!this.phoneNo || this.phoneNo.length==0){
+				  this.$tip.toast('请填写手机号');
+				  return;
+				}
+				if(!checkPhone.test(this.phoneNo)){
+					this.$tip.toast('请输入正确的手机号');
+					return false
+				}
+				if(!this.smsCode || this.smsCode.length==0){
+				  this.$tip.toast('请填短信验证码');
+				  return;
+				}
+				let loginParams = {
+				  mobile:this.phoneNo,
+				  captcha:this.smsCode
+				};
+				this.PhoneLogin(loginParams).then((res) => {
+				  console.log("res====》",res)
+				  if(res.data.success){
+					this.$tip.success('登录成功!')
+					this.$Router.replaceAll({name:'index'})
+				  }else{
+					this.$tip.error(res.data.message);
+				  }
+				}).catch((err) => {
+				  let msg = ((err.response || {}).data || {}).message || err.data.message || "请求出现错误，请稍后再试"
+				  this.$tip.error(msg);
+				});
+			},
+			loginSuccess() {
+			  // 登陆成功，重定向到主页
+			  this.$Router.replace({name:'index'})
+			},
+			requestFailed(err) {
+			  this.$message.warning("登录失败")
+			},
+        },
+		beforeDestroy() {
+		    if (this.smsCountInterval) {
+		        clearInterval(this.smsCountInterval);
+		    }
+		},
     }
 </script>
 
 <style>
     .login-paddingtop {
-        padding-top: 200 upx;
+        padding-top: 100upx;
     }
 
     .zai-box {
-        padding: 0 20 upx;
-        padding-top: 100 upx;
+        padding: 0 20upx;
+        padding-top: 100upx;
         position: relative;
     }
 
     .zai-logo {
         width: 200upx;
-        height: 300 upx;
+        height: 150px;
     }
 
     .zai-title {
@@ -143,9 +280,9 @@
     }
 
     .zai-label {
-        padding: 60 upx 0;
+        padding: 60upx 0;
         text-align: center;
-        font-size: 30 upx;
+        font-size: 30upx;
         color: #a7b6d0;
     }
 
@@ -153,8 +290,8 @@
         background: #ff65a3;
         color: #fff;
         border: 0;
-        border-radius: 100 upx;
-        font-size: 36 upx;
+        border-radius: 100upx;
+        font-size: 36upx;
     }
 
     .zai-btn:after {
@@ -163,7 +300,7 @@
 
     /*按钮点击效果*/
     .zai-btn.button-hover {
-        transform: translate(1 upx, 1 upx);
+        transform: translate(1upx, 1upx);
     }
 
 </style>

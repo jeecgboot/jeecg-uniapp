@@ -54,32 +54,7 @@
 				</view>
 			</view>
 			
-			<view class="cu-list menu">
-				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: '0.6s'}]">
-					<view class="content">
-						<text class="text-grey">所在部门</text>
-					</view>
-					<view class="action">
-						<text class="text-grey">{{personalMsg.orgCode}}</text>
-					</view>
-				</view>
-				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: '0.7s'}]">
-					<view class="content">
-						<text class="text-grey">工号</text>
-					</view>
-					<view class="action">
-						<text class="text-grey">{{personalMsg.workNo}}</text>
-					</view>
-				</view>
-				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: '0.8s'}]">
-					<view class="content">
-						<text class="text-grey">状态</text>
-					</view>
-					<view class="action">
-						<text class="text-grey">{{personalMsg.status}}</text>
-					</view>
-				</view>
-			</view>
+			
 			
 			<view class="cu-list menu">
 				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: '0.9s'}]">
@@ -100,32 +75,7 @@
 				</view>
 			</view>
 			
-			<view class="cu-list menu">
-				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: '1.1s'}]">
-					<view class="content">
-						<text class="text-grey">职务</text>
-					</view>
-					<view class="action">
-						<text class="text-grey">{{personalMsg.post}}</text>
-					</view>
-				</view>
-				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: '1.2s'}]">
-					<view class="content">
-						<text class="text-grey">身份</text>
-					</view>
-					<view class="action">
-						<text class="text-grey">{{personalMsg.identity}}</text>
-					</view>
-				</view>
-				<view class="cu-item animation-slide-bottom" v-if="personalMsg.identity =='上级'" >
-					<view class="content">
-						<text class="text-grey">负责部门</text>
-					</view>
-					<view class="action">
-						<text class="text-grey">{{personalMsg.departIds}}</text>
-					</view>
-				</view>
-			</view>
+	
 
 		</scroll-view>
 	</view>

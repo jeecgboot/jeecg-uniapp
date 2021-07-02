@@ -52,6 +52,13 @@ const routes = [
 	    },
 	},
 	{
+	    path: '/pages/user/location',
+	    name: 'location',
+	    meta: {
+	        title: '定位',
+	    },
+	},
+	{
 	    path: '/pages/common/exit',
 	    name: 'exit',
 	    meta: {
@@ -63,6 +70,54 @@ const routes = [
 	    name: 'success',
 	    meta: {
 	        title: 'success',
+	    },
+	},{
+	  path: '/pages/addressbook/address-book',
+	  name: 'addressBook',
+	    meta: {
+	        title: 'addressBook',
+	    },
+	},
+	{
+	  path: '/pages/addressbook/level-address-book',
+	  name: 'levelAddressBook',
+	    meta: {
+	        title: 'levelAddressBook',
+	    },
+	},
+	{
+	  path: '/pages/addressbook/member',
+	  name: 'member',
+	    meta: {
+	        title: 'member',
+	    },
+	},
+	{
+	  path: '/pages/addressbook/address-detail',
+	  name: 'addressDetail',
+	    meta: {
+	        title: 'addressDetail',
+	    },
+	},
+	{
+	    path: '/pages/annotation/annotationList',
+	    name: 'annotationList',
+	    meta: {
+	        title: '通知公告',
+	    },
+	},
+	{
+	    path: '/pages/annotation/annotationDetail',
+	    name: 'annotationDetail',
+	    meta: {
+	        title: '通知详情',
+	    },
+	},
+	{
+	    path: '/pages/common/helloWorld',
+	    name: 'helloWorld',
+	    meta: {
+	        title: 'helloWorld',
 	    },
 	},
 ]

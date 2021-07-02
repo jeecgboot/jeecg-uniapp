@@ -31,7 +31,6 @@ export default new Vuex.Store({
   actions: {
     // 登录
     mLogin({ commit }, userInfo) {
-      console.log("mLogin",userInfo)
       return new Promise((resolve, reject) => {
        api.login(userInfo).then(response => {
           if(response.data.code ==200){ 
@@ -56,9 +55,11 @@ export default new Vuex.Store({
     PhoneLogin({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         api.phoneNoLogin(userInfo).then(response => {
-          if(response.code =='200'){
-            const result = response.result
+          if(response.data.code ==200){
+            const result = response.data.result
             const userInfo = result.userInfo
+			uni.setStorageSync(ACCESS_TOKEN,result.token);
+			uni.setStorageSync(USER_INFO,userInfo);
             commit('SET_TOKEN', result.token)
             commit('SET_NAME', { username: userInfo.username,realname: userInfo.realname})
             commit('SET_AVATAR', userInfo.avatar)

@@ -2,25 +2,10 @@
 	<view>
 		<scroll-view scroll-y class="page">
 			  <!-- 头部logo-->
-		  <view class="UCenter-bg" @click="remove">
-		    <image :src="personalList.avatar" round class="png animation-slide-right margin-bottom-sm" mode="widthFix" :style="[{animationDelay: '0.1s'}]"></image>
-		    <view class="text-xl animation-slide-left" :style="[{animationDelay: '0.2s'}]">
-		       {{personalList.depart}}
-		    </view>
-		    <image src="/static/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+		  <view class="UCenter-bg">
+		    <image :src="personalList.avatar" class="png round animation-slide-right margin-bottom-sm" mode="scaleToFill" :style="[{animationDelay: '0.1s'}]"></image>
+		    <image src="https://static.jeecg.com/upload/test/wave_1595818053612.gif" mode="scaleToFill" class="gif-wave"></image>
 		  </view>
-		   <!-- 个人信息卡片-->
-		  <!-- <view class="cu-list menu-avatar">
-		   	<view class="cu-item">
-		   		<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-		   		<view class="content flex-sub">
-		   			<view class="text-grey">{{personalList.avatar}}</view>
-		   			<view class="text-gray text-sm flex justify-between">
-		   				经理
-		   			</view>
-		   		</view>
-		   	</view>
-		   </view> -->
 		  <view class="padding flex text-center text-grey bg-white shadow-warp">
 		    <view class="flex flex-sub flex-direction solid-right animation-slide-top" :style="[{animationDelay: '0.2s'}]">
 		      <view class="text-xl text-orange">{{personalList.username}}</view>
@@ -40,24 +25,37 @@
 		        <text class="text-grey">收藏</text>
 		      </view>
 		    </view>
-		    <view class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.3s'}]">
+		    <view class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.2s'}]">
 		      <view class="content">
 		        <text class="cuIcon-redpacket_fill text-red"></text>
 		        <text class="text-grey">红包</text>
 		      </view>
 		    </view>
-		    <view class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.5s'}]">
-				<navigator class="content" url="/pages/user/userdetail" hover-class="none">
+			<view class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.3s'}]" @tap="scan">
+			  <view class="content">
+			    <text class="cuIcon-scan text-red"></text>
+			    <text class="text-grey">扫码</text>
+			  </view>
+			</view>
+			<navigator class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.4s'}]" url="/pages/user/location" hover-class="none">
+				<view class="content" >
+				    <text class="cuIcon-location text-cyan"></text>
+					<text class="text-grey">定位</text>
+				</view>
+			</navigator>
+			<navigator class="cu-item arrow animation-slide-bottom" url="/pages/user/userdetail" :style="[{animationDelay: '0.6s'}]">
+			     <view class="content">
 				    <text class="cuIcon-settingsfill text-cyan"></text>
 					<text class="text-grey">设置</text>
-				</navigator>
-		    </view>
-			<view class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.7s'}]">
-				<navigator class="content" url="/pages/user/userexit" hover-class="none">
+			    </view>
+			</navigator>
+		   
+			<navigator class="cu-item arrow animation-slide-bottom" :style="[{animationDelay: '0.7s'}]" url="/pages/user/userexit" hover-class="none">
+				<view class="content" >
 				    <text class="cuIcon-exit text-cyan"></text>
 					<text class="text-grey">退出</text>
-				</navigator>
-			</view>
+				</view>
+			</navigator>
 		  </view>
 		  <view class="cu-tabbar-height"></view>
 		</scroll-view>
@@ -79,6 +77,7 @@
 				  positionUrl:'/sys/position/list',
 				  departUrl:'/sys/user/userDepartList',
 				  userUrl:'/sys/user/queryById',
+				  postUrl:'/sys/position/queryByCode',
 				  userId:'',
 				  id:''
 			};
@@ -88,16 +87,33 @@
 				immediate: true,
 				handler() {
 					console.log('watch',this.cur)
-				    this.load()
+				    this.userId=this.$store.getters.userid;
+					this.load()
 				},
 			},
 		},
 		methods: {
-			remove(){
-				 uni.removeStorageSync('Access-Token')
+			scan(){
+				 console.log("进来了")
+				// #ifndef H5
+				uni.scanCode({
+				    success: function (res) {
+						console.log('条码res：' + res);
+				        console.log('条码类型：' + res.scanType);
+				        console.log('条码内容：' + res.result);
+				    }
+				});
+				// #endif
+				// #ifdef H5
+				this.$tip.alert("暂不支持")
+				// #endif
 			},
 			load(){
-				this.$http.get(this.userUrl,{params:{id:this.$store.getters.userid}}).then(res=>{
+				if(!this.userId){
+					
+					return;
+				}
+				this.$http.get(this.userUrl,{params:{id:this.userId}}).then(res=>{
 					console.log("res",res)
 					 if (res.data.success) {
 						let perArr = res.data.result
@@ -105,21 +121,41 @@
 						this.personalList.avatar =avatar
 						this.personalList.realname = perArr.realname
 						this.personalList.username = perArr.username
-						this.personalList.post = perArr.post
 						this.personalList.depart = perArr.departIds
+					    this.getpost(perArr.post)
 					}
 				}).catch(err => {
 					console.log(err);
 				});
 				
-			}		
+			},
+			getpost(code){
+				if(!code||code.length==0){
+					this.personalList.post='员工'
+					return false;
+				}
+				this.$http.get(this.postUrl,{params:{code:code}}).then(res=>{
+					console.log("postUrl",res)
+					 if (res.data.success) {
+						this.personalList.post=res.data.result.name
+					}
+				}).catch(err => {
+					console.log(err);
+				});
+				
+			}
 		}
 	}
 </script>
 
 <style>
 .UCenter-bg {
-  background-image: url(https://image.weilanwl.com/color2.0/index.jpg);
+	/* #ifdef MP-WEIXIN */
+	background-image: url('https://static.jeecg.com/upload/test/blue_1595818030310.png');
+	/* #endif */
+	/* #ifndef MP-WEIXIN */
+	background-image: url('/static/blue.png');
+	/* #endif */
   background-size: cover;
   height: 400rpx;
   display: flex;

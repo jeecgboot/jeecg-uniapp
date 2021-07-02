@@ -10,54 +10,56 @@
 				</swiper-item>
 			</swiper>
 			<!-- 中部应用宫格 -->
-			<view class="bg-white"  :style="[{animation: 'show 0.4s 1'}]">
-				<view class="grid margin-bottom col-2 ">
-				  <navigator  v-for="(item,index) in middleApps" :key="index" :url="'/pages/home/' + item.name" class="nav-li" navigateTo
-					 :style="[{animation: 'show ' + ((index+1)*0.2+1) + 's 1'}]" hover-class="none">
-						<view class="flex align-center">
-							<image :src="'/static/home/'+item.icon"  mode="aspectFill" class="line2-icon"></image>
+			<!--<view class="bg-white"  :style="[{animation: 'show 0.3s 1'}]">
+				<view class="cu-list grid margin-bottom col-2  ">
+				  <view 
+				  v-for="(item,index) in middleApps" 
+				  :key="index" 
+				  class="cu-item text-center" 
+				  :style="[{animation: 'show ' + ((index+1)*0.2+1) + 's 1'}]" hover-class="none">
+						<view class="flex align-center margin-left" @tap="goCheckPage(item.page)">
+							<image :src="item.icon"  mode="aspectFill" class="line2-icon"></image>
 							<view class="text-df">{{item.title}} <br/> <span class="text-light">{{item.text}}</span></view>
 						</view>
-					</navigator>	
+					</view>	
 				</view>
-			</view>
+			</view>-->
 			<!-- 常用服务 -->
-			<view class="cu-bar bg-white solid-bottom"   :style="[{animation: 'show 0.6s 1'}]">
+			<view class="cu-bar bg-white solid-bottom" :style="[{animation: 'show 0.5s 1'}]">
 				<view class="action">
 					<text class='cuIcon-title text-blue'></text>常用服务
 				</view>
 			</view>
-			<view class=" bg-white grid col-3 padding-sm">
-				<view class="padding-sm animation-slide-bottom" :style="[{animationDelay: (index + 1)*0.1 + 's'}]" v-for="(item,index) in usList" :key="index" @tap="goPage(item.page)">
-					<view class="padding radius text-center shadow-blur solid-right ">
-						<!-- <image :src="item.icon"  mode="aspectFill" class="line2-icon"></image> -->
-						<view class="cu-avatar lg " 
-						 :style="{background: 'url(' + item.icon + ') no-repeat',backgroundSize:'100upx 100upx'}">
-						   <view class="cu-tag badge" v-if="getTtemDotInfo(item)">{{getTtemDotInfo(item)}}</view>
-						</view>
-						<view class="text-lg margin-top">{{item.title}}</view>
+				
+			<view class="cu-list grid col-4 text-sm">
+				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: (index + 1)*0.05 + 's'}]" v-for="(item,index) in usList" :key="index" @tap="goPage(item.page)">
+					<view class="padding text-center">
+						<image :src="item.icon" style="width:28px;height:28px;">
+							<view class="cu-tag badge margin-top-sm" style="margin-left:1.2em" v-if="getTtemDotInfo(item)">
+							   <block v-if="getTtemDotInfo(item)">{{getTtemDotInfo(item)}}</block>
+							</view>
+						</image>
+						<view class="margin-top-xs">{{item.title}}</view>
 					</view>
 				</view>
 			</view>
-			
+				
 			<!-- 其他服务 -->
 			<view class="cu-bar bg-white solid-bottom margin-top"  :style="[{animation: 'show 0.6s 1'}]">
 				<view class="action">
-					<text class='cuIcon-title text-yellow'></text>其他服务
+					 <text class='cuIcon-title text-yellow'></text>其他服务
 				</view>
 			</view>
-			<view class=" bg-white grid col-3 padding-sm">
-				<view class="padding-sm animation-slide-bottom" :style="[{animationDelay: (index + 1)*0.1 + 's'}]" v-for="(item,index) in osList" :key="index">
-					<view class="padding radius text-center shadow-blur solid-right ">
-						<view class="cu-avatar lg "  :style="{background: 'url(' + item.icon + ') no-repeat',backgroundSize:'100upx 100upx'}"><!-- <view class="cu-tag badge">99</view> --></view>
-						<view class="text-lg margin-top">{{item.title}}</view>
+			<view class="cu-list grid col-4 text-sm">
+				<view class="cu-item animation-slide-bottom" :style="[{animationDelay: (index + 1)*0.1 + 's'}]" v-for="(item,index) in osList" :key="index" @tap="goPage(item.page)">
+					<view class="padding text-center">
+						<image :src="item.icon" style="width:28px;height:28px;"/>
+						<view class="margin-top-xs">{{item.title}}</view>
 					</view>
 				</view>
 			</view>
-			
-			<view class="cu-tabbar-height">
-			</view>
 		</scroll-view>
+		<view class="cu-tabbar-height margin-top"></view>
 	</view>
 </template>
 
@@ -200,9 +202,13 @@
 	}
 </script>
 
-<style>
-  .line2-icon {
-	width: 60px;
-	height: 60px;
-  }
+<style scoped>
+	.cu-list.grid>.cu-item {
+	  padding: 0px 0px; 
+	}
+    .line2-icon {
+	  width: 60px;
+	  height: 60px;
+    }
+	
 </style>

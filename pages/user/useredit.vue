@@ -32,23 +32,8 @@
 				<view class="title">性别</view>
 				<switch class='switch-sex' @change="SwitchC" :class="switchC?'checked':''" :checked="switchC?true:false"></switch>
 			</view>
-			<view class="cu-form-group">
-				<view class="title">生日</view>
-				<picker mode="date" :value="myFormData.birthday" @change="DateChange">
-					<view class="picker">
-						{{myFormData.birthday}}
-					</view>
-				</picker>
-			</view>
 			
-			<view class="cu-form-group margin-top">
-				<view class="title">所在部门</view>
-				<input placeholder="所在部门" name="input" v-model="myFormData.orgCode" disabled></input>
-			</view>
-			<view class="cu-form-group">
-				<view class="title">工号</view>
-				<input placeholder="工号" name="input"  v-model="myFormData.workNo" disabled></input>
-			</view>
+			
 			
 			<view class="cu-form-group margin-top">
 				<view class="title">手机号码</view>

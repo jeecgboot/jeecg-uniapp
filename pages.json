@@ -124,8 +124,42 @@
 		}, {
 			"path": "pages/common/success",
 			"style": {}
+		},{
+			"path": "pages/user/location",
+			"style": {},
+			"permission": {
+				"scope.userLocation": {
+				  "desc": "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
+				}
+			  }
+		},{
+			"path": "pages/addressbook/address-book",
+			"style": {}
+		},{
+			"path": "pages/addressbook/level-address-book",
+			"style": {}
+		},
+		{
+			"path": "pages/addressbook/member",
+			"style": {}
+		},{
+			"path": "pages/addressbook/address-detail",
+			"style": {}
+		},{
+			"path": "pages/annotation/annotationList",
+			"style": {
+				"app-plus" : {
+					"bounce" : "none" //删除此项: mescroll-body支持iOS回弹
+				}
+			}
+		},{
+			"path": "pages/annotation/annotationDetail",
+			"style": {}
+		},{
+			"path": "pages/common/helloWorld",
+			"style": {}
 		}
-
+		
 	],
 	"globalStyle": {
 		"mp-alipay": {
