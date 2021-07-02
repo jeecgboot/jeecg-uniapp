@@ -78,7 +78,7 @@
             return {
 				shape:'',//round 圆形
 				loading: false,
-				userName: 'jeecg',
+				userName: 'admin',
 				password: '123456',
 				phoneNo: '',
 				smsCode: '',

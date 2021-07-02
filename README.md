@@ -4,7 +4,7 @@
 
 
 # JeecgUniapp项目介绍
-JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端适配，同时支持APP、小程序、H5！实现了与JeecgBoot平台完美对接的移动解决方案！目前已经实现登录、用户信息、通讯录、公告、移动首页、九宫格等基础功能。
+JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端适配，同时支持APP、小程序、H5！实现了与[JeecgBoot平台](https://github.com/jeecgboot/jeecg-boot)完美对接的移动解决方案！目前已经实现登录、用户信息、通讯录、公告、移动首页、九宫格等基础功能。
 
 当前最新版本： 2.0（发布日期：2020-07-05）
 
@@ -21,6 +21,9 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 ### 源码下载
 - https://github.com/jeecgboot/jeecg-uniapp
 - https://gitee.com/jeecg/jeecg-uniapp
+
+### 后台代码
+-  https://github.com/jeecgboot/jeecg-boot
 
 ### 技术文档
 - 技术官网： [http://www.jeecg.com/appIndex](http://www.jeecg.com/appIndex)
