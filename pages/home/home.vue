@@ -9,21 +9,7 @@
 					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 				</swiper-item>
 			</swiper>
-			<!-- 中部应用宫格 -->
-			<!--<view class="bg-white"  :style="[{animation: 'show 0.3s 1'}]">
-				<view class="cu-list grid margin-bottom col-2  ">
-				  <view 
-				  v-for="(item,index) in middleApps" 
-				  :key="index" 
-				  class="cu-item text-center" 
-				  :style="[{animation: 'show ' + ((index+1)*0.2+1) + 's 1'}]" hover-class="none">
-						<view class="flex align-center margin-left" @tap="goCheckPage(item.page)">
-							<image :src="item.icon"  mode="aspectFill" class="line2-icon"></image>
-							<view class="text-df">{{item.title}} <br/> <span class="text-light">{{item.text}}</span></view>
-						</view>
-					</view>	
-				</view>
-			</view>-->
+			
 			<!-- 常用服务 -->
 			<view class="cu-bar bg-white solid-bottom" :style="[{animation: 'show 0.5s 1'}]">
 				<view class="action">
@@ -65,6 +51,7 @@
 
 <script>
 	import { us,os } from '@/common/util/work.js'
+	import socket from '@/common/js-sdk/socket/socket.js'
 	export default {
 		name: 'home',
 		props:{
@@ -73,8 +60,8 @@
 		watch: {
 			cur: {
 				immediate: true,
-				handler() {
-					console.log('watch',this.cur)
+				handler:function(val,oldVal){
+					console.log('cur',val,oldVal)
 				    this.initMenu()
 				},
 			},
@@ -93,9 +80,6 @@
 				],
 				usList:us.data,
 				osList:os.data,
-				websock:'',
-				heartCheck:null,
-				lockReconnect:false,
 				msgCount:0,
 				dot:{
 				  mailHome:false
@@ -105,7 +89,8 @@
 		methods: {
 			initMenu(){
 				console.log("-----------home------------")
-			    this.initWebSocket();
+			    this.onSocketOpen()
+			    this.onSocketReceive()
 			    this.loadCount(0);
 			},
 			goPage(page){
@@ -116,65 +101,27 @@
 				  this.msgCount = 0
 				}
 				this.dot[page]=false
-				this.$router.push({name: page})
+				this.$Router.push({name: page})
 			},
-			initWebSocket: function () {
-				// WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https
-				var userId = this.$store.getters.userid;
-				var url = this.$config.apiUrl.replace("https://","wss://").replace("http://","ws://")+"/websocket/"+userId;
-				console.log('websocket url>>'+url);
-				this.websock = new WebSocket(url);
-				this.websock.onopen = this.websocketOnopen;
-				this.websock.onerror = this.websocketOnerror;
-				this.websock.onmessage = this.websocketOnmessage;
-				this.websock.onclose = this.websocketOnclose;
+			// 启动webSocket
+			onSocketOpen() {
+				socket.init('websocket');
 			},
-			websocketOnopen: function () {
-				console.log("WebSocket连接成功");
-				//心跳检测重置
-				//this.heartCheck.reset().start();
-			},
-			websocketOnerror: function () {
-				console.log("WebSocket连接发生错误");
-				this.reconnect();
-			},
-			websocketOnmessage: function (e) {
-				console.log("-----接收消息-------",e.data);
-				var data = eval("(" + e.data + ")"); //解析对象
-				if(data.cmd == "topic"){
-				  //系统通知
-				  this.loadCount('1')
-				}else if(data.cmd == "user"){
-				  //用户消息
-				  this.loadCount('2')
-				} else if(data.cmd == 'email'){
-				  this.loadEmailCount()
+			onSocketReceive() {
+				var _this=this
+				socket.acceptMessage = function(res){
+					// console.log("页面收到的消息", res);
+					if(res.cmd == "topic"){
+					  //系统通知
+					  _this.loadCount('1')
+					}else if(res.cmd == "user"){
+					  //用户消息
+					  _this.loadCount('2')
+					} else if(res.cmd == 'email'){
+					 //邮件消息
+					  _this.loadEmailCount()
+					}
 				}
-		
-				//心跳检测重置
-				//this.heartCheck.reset().start();
-			},
-			websocketOnclose: function (e) {
-				console.log("connection closed (" + e.code + ")");
-				this.reconnect();
-			},
-			websocketSend(text) { // 数据发送
-				try {
-				  this.websock.send(text);
-				} catch (err) {
-				  console.log("send failed (" + err.code + ")");
-				}
-			},
-			reconnect() {
-				var that = this;
-				if(that.lockReconnect) return;
-				that.lockReconnect = true;
-				//没连接上会一直重连，设置延迟避免请求过多
-				setTimeout(function () {
-				  console.info("尝试重连...");
-				  that.initWebSocket();
-				  that.lockReconnect = false;
-				}, 5000);
 			},
 			loadCount(flag){
 				console.log("loadCount::flag",flag)
