@@ -42,14 +42,19 @@
 			initDictData() {
 				//根据字典Code, 初始化字典数组
 				if (this.searchUrl){
-					this.$api.get(this.searchUrl,{"code":this.dictCode}).then(res=>{
-						this.dictOptions=res;
-						this.getIndex()
+					this.$http.get(this.searchUrl,{"code":this.dictCode}).then(res=>{
+						if(res.data.success){
+							this.dictOptions = res;
+							this.getIndex()
+						}
 					})
 				}else{
-					this.$api.getDict(this.dictCode).then(res => {
-						this.dictOptions = res;
-						this.getIndex()
+					let code = this.dictCode;
+					this.$http.get(`/sys/dict/getDictItems/${code}`).then(res=>{
+						if(res.data.success){
+							this.dictOptions = res.data.result;
+							this.getIndex()
+						}
 					})
 				}
 			},
