@@ -10,17 +10,17 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/zhangdaiscott/jeecg-boot/blob/master/LICENSE)
-[![](https://img.shields.io/badge/Author-JEECG团队-orange.svg)](http://www.jeecg.com)
-[![](https://img.shields.io/badge/version-2.0-brightgreen.svg)](https://github.com/zhangdaiscott/jeecg-boot-uniapp)
-[![GitHub stars](https://img.shields.io/github/stars/zhangdaiscott/jeecg-boot-uniapp.svg?style=social&label=Stars)](https://github.com/zhangdaiscott/jeecg-boot-uniapp)
-[![GitHub forks](https://img.shields.io/github/forks/zhangdaiscott/jeecg-boot-uniapp.svg?style=social&label=Fork)](https://github.com/zhangdaiscott/jeecg-boot-uniapp)
-
-
+[![](https://img.shields.io/badge/Author-北京国炬软件-orange.svg)](http://www.jeecg.com)
+[![](https://img.shields.io/badge/Blog-官方博客-blue.svg)](https://my.oschina.net/jeecg)
+[![](https://img.shields.io/badge/version-3.4.1-brightgreen.svg)](https://github.com/zhangdaiscott/jeecg-boot)
+[![GitHub stars](https://img.shields.io/github/stars/zhangdaiscott/jeecg-boot.svg?style=social&label=Stars)](https://github.com/zhangdaiscott/jeecg-boot)
+[![GitHub forks](https://img.shields.io/github/forks/zhangdaiscott/jeecg-boot.svg?style=social&label=Fork)](https://github.com/zhangdaiscott/jeecg-boot)
 
 
 ### 源码下载
 - https://github.com/jeecgboot/jeecg-uniapp
 - https://gitee.com/jeecg/jeecg-uniapp
+
 
 ### 后台代码
 -  https://github.com/jeecgboot/jeecg-boot
@@ -28,14 +28,18 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 ### 技术文档
 - 技术官网： [http://www.jeecg.com/appIndex](http://www.jeecg.com/appIndex)
 - 技术文档： [http://doc.jeecg.com/2044258](http://doc.jeecg.com/2044258)
-- QQ交流群 ： ④774126647、③816531124（满）、②769925425（满）、①284271917（满）
 - 视频教程： [零基础入门视频](https://www.bilibili.com/video/BV1sQ4y1R7Rz)
 - H5体验：  [http://uniapp.jeecg.com](http://uniapp.jeecg.com)
 - APP体验： [下载APP](https://jeecgos.oss-cn-beijing.aliyuncs.com/app/jeecgbootapp_20210518.apk)
 - 小程序体验
-
 ![输入图片说明](https://oscimg.oschina.net/oscnet/up-213908261262c30a7d83a4bc9936587ed2a.png "在这里输入图片标题")
 
+
+### 反馈问题
+
+本项目关闭issue，使用中遇到问题或者BUG可以在 [github上提Issues](https://github.com/jeecgboot/jeecg-uniapp/issues/new)
+
+官方支持： http://jeecg.com/doc/help
 
 
 ### 功能模块
