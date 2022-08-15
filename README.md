@@ -1,8 +1,3 @@
-![JEECG](https://static.oschina.net/uploads/img/201905/24164523_XDhg.png "JeecgBoot快速开发平台")
-
-
-
-
 # JeecgUniapp项目介绍
 JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端适配，同时支持APP、小程序、H5！实现了与[JeecgBoot平台](https://github.com/jeecgboot/jeecg-boot)完美对接的移动解决方案！目前已经实现登录、用户信息、通讯录、公告、移动首页、九宫格等基础功能。
 
