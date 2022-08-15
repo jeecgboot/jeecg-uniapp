@@ -1,5 +1,5 @@
 # JeecgUniapp项目介绍
-JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端适配，同时支持APP、小程序、H5！实现了与[JeecgBoot平台](https://github.com/jeecgboot/jeecg-boot)完美对接的移动解决方案！目前已经实现登录、用户信息、通讯录、公告、移动首页、九宫格等基础功能。
+JeecgBoot - APP移动解决方案，采用uniapp框架，一份代码多终端适配，同时支持APP、小程序、H5！实现了与[JeecgBoot低代码平台](https://github.com/jeecgboot/jeecg-boot)完美对接！目前已经实现登录、用户信息、通讯录、公告、移动首页、九宫格等基础功能，更多功能请自己扩展。
 
 当前最新版本： 2.0（发布日期：2020-07-05）
 
@@ -21,13 +21,11 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 -  https://github.com/jeecgboot/jeecg-boot
 
 ### 技术文档
-- 技术官网： [http://www.jeecg.com/appIndex](http://www.jeecg.com/appIndex)
+- APP体验：   http://jeecg.com/appIndex
+- 技术官网： [http://www.jeecg.com](http://www.jeecg.com)
 - 技术文档： [http://doc.jeecg.com/2044258](http://doc.jeecg.com/2044258)
 - 视频教程： [零基础入门视频](https://www.bilibili.com/video/BV1sQ4y1R7Rz)
-- H5体验：  [http://uniapp.jeecg.com](http://uniapp.jeecg.com)
-- APP体验： [下载APP](https://jeecgos.oss-cn-beijing.aliyuncs.com/app/jeecgbootapp_20210518.apk)
-- 小程序体验
-![输入图片说明](https://oscimg.oschina.net/oscnet/up-213908261262c30a7d83a4bc9936587ed2a.png "在这里输入图片标题")
+
 
 
 ### 反馈问题
@@ -35,6 +33,26 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 本项目关闭issue，使用中遇到问题或者BUG可以在 [github上提Issues](https://github.com/jeecgboot/jeecg-uniapp/issues/new)
 
 官方支持： http://jeecg.com/doc/help
+
+
+
+
+
+效果预览
+----
+
+![](https://oscimg.oschina.net/oscnet/up-9fb74025440e6066651599d78b4bc78f2cd.png)
+
+![](https://oscimg.oschina.net/oscnet/up-7605e213638a559bba64279b6db93af3ed0.png)
+
+![](https://oscimg.oschina.net/oscnet/up-43ddd52486509ab06a920c3f99f42b8b432.png)
+
+![](https://oscimg.oschina.net/oscnet/up-02d83a8fe3fab4c0153862a9084f8a94cbb.png)
+
+![](https://oscimg.oschina.net/oscnet/up-937a63d5e13869c40e6f1437452171d8235.png)
+
+![输入图片说明](https://oscimg.oschina.net/oscnet/up-49e27699eb278c7c6b6748bfeaeb6c13b72.gif "在这里输入图片标题")
+
 
 
 ### 功能模块
@@ -64,22 +82,3 @@ JEECG BOOT APP 移动解决方案，采用uniapp框架，一份代码多终端�
 │  ├─图片上传
 ├─。。。
 ```
-
-
-
-
-效果预览
-----
-
-![](https://oscimg.oschina.net/oscnet/up-9fb74025440e6066651599d78b4bc78f2cd.png)
-
-![](https://oscimg.oschina.net/oscnet/up-7605e213638a559bba64279b6db93af3ed0.png)
-
-![](https://oscimg.oschina.net/oscnet/up-43ddd52486509ab06a920c3f99f42b8b432.png)
-
-![](https://oscimg.oschina.net/oscnet/up-02d83a8fe3fab4c0153862a9084f8a94cbb.png)
-
-![](https://oscimg.oschina.net/oscnet/up-937a63d5e13869c40e6f1437452171d8235.png)
-
-![输入图片说明](https://oscimg.oschina.net/oscnet/up-49e27699eb278c7c6b6748bfeaeb6c13b72.gif "在这里输入图片标题")
-
