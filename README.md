@@ -3,8 +3,6 @@ JeecgBoot - APP移动解决方案，采用uniapp框架，一份代码多终端�
 
 当前最新版本： 2.0（发布日期：2020-07-05）
 
-> 本项目关闭issue，遇到BUG可以在github上 [发Issue](https://github.com/jeecgboot/jeecg-uniapp/issues/new)
-
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/zhangdaiscott/jeecg-boot/blob/master/LICENSE)
 [![](https://img.shields.io/badge/Author-北京国炬软件-orange.svg)](http://www.jeecg.com)
@@ -13,6 +11,8 @@ JeecgBoot - APP移动解决方案，采用uniapp框架，一份代码多终端�
 [![GitHub stars](https://img.shields.io/github/stars/zhangdaiscott/jeecg-boot.svg?style=social&label=Stars)](https://github.com/zhangdaiscott/jeecg-boot)
 [![GitHub forks](https://img.shields.io/github/forks/zhangdaiscott/jeecg-boot.svg?style=social&label=Fork)](https://github.com/zhangdaiscott/jeecg-boot)
 
+
+> 本项目关闭issue，遇到BUG可以在github上 [发Issue](https://github.com/jeecgboot/jeecg-uniapp/issues/new)
 
 ### 源码下载
 - https://github.com/jeecgboot/jeecg-uniapp
