@@ -8,6 +8,12 @@ import configService from'./common/service/config.service.js'
 import router from './common/router'
 import {RouterMount} from './plugin/uni-simple-router/index.js'
 
+//引入mescroll插件
+import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"
+import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue"
+Vue.component('mescroll-body', MescrollBody);
+Vue.component('mescroll-uni', MescrollUni);
+
 // 注册缓存器
 Vue.use(MinCache,{timeout: 6})
 
