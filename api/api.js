@@ -15,6 +15,12 @@ const apiService = {
 		return http.post('/sys/phoneLogin',params);
 	},
 	/**
+	  * 第三方登录
+	  */
+	thirdLogin(token, thirdType,tenantId) {
+		return http.get(`/sys/thirdLogin/getLoginUser/${token}/${thirdType}/${tenantId}`);
+	},
+	/**
 	  * 退出
 	  */
 	logout(params) {
