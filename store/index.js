@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import api from "@/api/api"
 import MinCache from'@/common/util/MinCache.js'
-import { ACCESS_TOKEN,USER_NAME,USER_INFO } from "@/common/util/constants"
+import { ACCESS_TOKEN,USER_NAME,USER_INFO,X_TENANT_ID } from "@/common/util/constants"
 
 Vue.use(Vuex)
 
@@ -63,6 +63,32 @@ export default new Vuex.Store({
             commit('SET_TOKEN', result.token)
             commit('SET_NAME', { username: userInfo.username,realname: userInfo.realname})
             commit('SET_AVATAR', userInfo.avatar)
+            resolve(response)
+          }else{
+            reject(response)
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 第三方登录
+    ThirdLogin({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        api.thirdLogin(param.token,param.thirdType,param.tenantId).then(response => {
+          if(response.data.code =='200'){
+            const result = response.data.result
+            const userInfo = result.userInfo
+            uni.setStorageSync(ACCESS_TOKEN,result.token);
+            uni.setStorageSync(USER_INFO,userInfo);
+            uni.setStorageSync(X_TENANT_ID,userInfo.loginTenantId);
+
+            commit('SET_TOKEN', result.token)
+            commit('SET_AVATAR', userInfo.avatar)
+            commit('SET_NAME', { username: userInfo.username,realname: userInfo.realname })
+            commit('SET_ID', userInfo.id)
+            commit('SET_INFO', userInfo)
+            commit('SET_TENANTID', userInfo.loginTenantId)
             resolve(response)
           }else{
             reject(response)

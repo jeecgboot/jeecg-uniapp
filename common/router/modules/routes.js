@@ -7,6 +7,13 @@ const routes = [
 		 },
 	},
 	{
+		path: "/pages/login/loginOauth2",
+		name: 'oauth2Login',
+		meta: {
+			title: 'oauth2登录',
+		},
+	},
+	{
         //注意：path必须跟pages.json中的地址对应，最前面别忘了加'/'哦
       path: '/pages/index/index',
       name: 'index',
